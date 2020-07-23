@@ -70,6 +70,9 @@ ActionBarNotify: true
 # Display achievement DisplayName and Message as screen titles. Ignored if using Minecraft 1.7.9 or 1.7.10.
 TitleScreen: true
 
+# Display chat messages when a player receives an achievement.
+ReceiverChatMessages: true
+
 # When a player receives an achievement, the DisplayName, Message and rewards of the achievement are displayed in
 # the chat. If HoverableReceiverChatText is true, a single hoverable text will be displayed to the receiver.
 # Otherwise texts will be displayed one after the other.
@@ -106,13 +109,10 @@ ExcludedWorlds: []
 # Ignore vertical dimension (Y axis) when calculating distance statistics.
 IgnoreVerticalDistance: false
 
-# Don't show these categories in the achievement GUI or in the stats output (delete the [] before adding values).
+# Don't show these categories in the achievement GUI or in the stats output.
 # Also prevent obtaining achievements for these categories and prevent stats from increasing.
-DisabledCategories: []
-#  - PetMasterGive
-#  - PetMasterReceive
-#  - DistanceLlama
-#  - DistanceGliding
+DisabledCategories:
+- AdvancementsCompleted
 
 # Obfuscate achievements that have not yet been received in /aach list.
 ObfuscateNotReceived: false
@@ -125,7 +125,10 @@ ObfuscateNotReceived: false
 # the 500 stone achievement will become legible.
 ObfuscateProgressiveAchievements: false
 
-# Hide categories for which a player has not yet received achievements by marking them as locked in /aach list.
+# Similar to ObfuscateProgressiveAchievements, but displays not received achievements as locked in /aach list.
+HideProgressiveAchievements: false
+
+# Hide categories for which a player has not yet received achievements by displaying them as locked in /aach list.
 HideNotReceivedCategories: false
 
 # Completely hide categories for which the player does not have the corresponding count permissions.
@@ -140,8 +143,11 @@ EnrichedListProgressBars: true
 # Annotate each achievement displayed in a /aach list category with a number.
 NumberedItemsInList: false
 
-# Color used for Goals and progress bars in /aach list when an achievement is not yet received.
+# Color used for not yet received achievements in /aach list.
 ListColorNotReceived: 8
+
+# Italicise not yet received achievements in /aach list. Obfuscated achievements are not affected.
+ListItaliciseNotReceived: true
 
 # Sort pages of the book in chronological order (false for reverse chronological order).
 BookChronologicalOrder: true
@@ -257,7 +263,7 @@ PooledRequestsTaskInterval: 10
 Places:  
   chest:
     5:
-      # Used in /aach list when achievement not yet received, and in advancements.
+      # Optional, used in /aach list when achievement not yet received, and in advancements.
       Goal: Place 5 chests.
       # Description; displayed when receiving achievement, and in /aach book and /aach list.
       Message: §6You have placed 5 chests!
@@ -317,7 +323,7 @@ Breaks:
 # When "something" is killed. You can use any of the following:
 # - an entity type (available names: github.com/PyvesB/AdvancedAchievements/wiki/Entity-names).
 # - poweredcreeper.
-# - a mob's custom name (name tag/plugins such as Mythic Mobs).
+# - a mob's custom name (name tag/plugins such as Mythic Mobs) for Minecraft 1.8 or more recent.
 # - player to track player kills as a whole.
 # - specificplayer- followed by player UUID to track how many times a specific player has been killed.
 Kills:
@@ -373,6 +379,13 @@ Crafts:
       DisplayName: Blacksmith Apprentice
       Reward:
         Money: 2
+    100:      
+      Goal: Craft 100 swords.
+      Message: Next craft, Excalibur?
+      Name: craft_100_blade
+      DisplayName: Blacksmith Legend
+      Reward:
+        Experience: 500
         
 # When a player enters a specific command (specify command prefixes in lower case without initial slash).
 # For instance a command /awf add world from the AntiWorldFly plugin matches with subcategory 'awf add'.
@@ -575,7 +588,7 @@ PlayedTime:
 # When a distance is traveled by foot.
 DistanceFoot:
   1000:
-    Goal: Travel 100 Blocks with your feet.
+    Goal: Travel 1000 Blocks with your feet.
     Message: You traveled 1000 blocks by foot!
     Name: distancefoot_1000
     DisplayName: Big Walker 
@@ -754,6 +767,16 @@ Riptides:
     Message: You've mastered the powers of the sea!
     Name: riptides_1
     DisplayName: Poseidon
+# When an a certain amount of advancements are completed.
+AdvancementsCompleted:
+  20:
+    Goal: Complete 20 advancements.
+    Message: 20 advancements completed!
+    Name: advancements_20
+    DisplayName: Game Block Advance
+    # Use semicolons for multiple item rewards as well. The below example will reward 8 diamond and 1 cake
+    Reward:
+      Item: diamond 8; cake 1
   
 #===========================OOOOOOO===========================#
 # VII-----------------------------------------------------VII #
@@ -768,15 +791,15 @@ MultiCommand: true
 # yourAch1 achievement to PLAYER. The /aach give command does NOT work with other achievements.
 Commands:
   yourAch1:
+    Goal: Take part in the special event!\nEvery Friday at 8pm!
     Message: You took part in the special event!
-    Name: yourAch1
+    Name: your_ach1
     DisplayName: Special Event Achievement!
     
 # When the command /aach add is called for this category.
 Custom:
   votes:
     10:
-      Goal: Vote 10 times.
       Message: Voted 10 times for the server!
       Name: customs_votes_10
       DisplayName: Server fan

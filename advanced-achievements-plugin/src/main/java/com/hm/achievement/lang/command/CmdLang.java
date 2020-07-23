@@ -9,9 +9,11 @@ import com.hm.achievement.lang.LangHelper;
  * @author Rsl1122
  */
 public enum CmdLang implements Lang {
+
 	NO_PERMISSIONS("You do not have the permission to do this."),
 	INVALID_COMMAND("Invalid command. Please type /aach to display the command help."),
 	PLAYER_OFFLINE("The player PLAYER is offline!"),
+	NOT_A_PLAYER("You cannot give achievements to ENTITY, it is not a player!"),
 	PLAYER_RANK("Current rank:"),
 	NOT_RANKED("You are currently not ranked for this period."),
 	// AddCommand
@@ -29,6 +31,7 @@ public enum CmdLang implements Lang {
 	CHECK_ACHIEVEMENTS_FALSE("PLAYER has not received the achievement ACH!"),
 	// DeleteCommand
 	DELETE_ACHIEVEMENTS("The achievement ACH was deleted from PLAYER."),
+	DELETE_ALL_ACHIEVEMENTS("All achievements were deleted from PLAYER."),
 	// GenerateCommand
 	ADVANCEMENTS_GENERATED("Advancements were successfully generated."),
 	MINECRAFT_NOT_SUPPORTED("Advancements not supported in your Minecraft version. Please update to 1.12+."),
@@ -41,7 +44,8 @@ public enum CmdLang implements Lang {
 	CONFIGURATION_RELOAD_FAILED("Errors while reloading configuration. Please view logs for more details."),
 	CONFIGURATION_SUCCESSFULLY_RELOADED("Configuration successfully reloaded."),
 	// ResetCommand
-	RESET_SUCCESSFUL(" statistics were cleared for PLAYER."),
+	RESET_SUCCESSFUL("CAT statistics were cleared for PLAYER."),
+	RESET_ALL_SUCCESSFUL("All statistics were cleared for PLAYER."),
 	// StatsCommand
 	NUMBER_ACHIEVEMENTS("Achievements received:"),
 	// ToggleCommand
